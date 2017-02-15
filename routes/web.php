@@ -11,12 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('upload');
-});
+Route::get('/', 'IndexController@index');
 
 Route::get('/upload', function() {
-    $upload = new \App\Module\Upload\QiNiu();
-//    echo asset('QQ图片20161017184259.jpg');
-    $upload->upload(public_path('PAL-国家开单量图 (1).png'));
+    return view('uploads');
 });
+Route::get('/weixin', 'ImageController@weixinLogin');

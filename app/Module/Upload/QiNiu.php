@@ -1,7 +1,9 @@
 <?php
 namespace App\Module\Upload;
 
+use Mockery\Exception\RuntimeException;
 use Qiniu\Auth;
+use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;
 
 class QiNiu implements ImageUpload
@@ -32,5 +34,14 @@ class QiNiu implements ImageUpload
             $key = end($key);
         }
         list($ret, $err) = $upload->putFile($token, $key, $filePath);
+        var_dump($ret, $err);
+        if (!is_null($err)) throw new \RuntimeException($err);
+        return sprintf('%s/%s', env('QINIU_HOST'), $ret['key']);
+    }
+
+    function delete($key)
+    {
+        $bucketMgr = new BucketManager($this->auth);
+        $err = $bucketMgr->delete(env('QINIU_BUCKET'), $key);
     }
 }

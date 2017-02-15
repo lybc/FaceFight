@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        \SocialiteProviders\Manager\ServiceProvider::class,
+        //'Laravel\Socialite\SocialiteServiceProvider',
     ],
 
     /*
@@ -191,7 +193,7 @@ return [
     */
 
     'aliases' => [
-
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

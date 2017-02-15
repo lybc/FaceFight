@@ -3,17 +3,19 @@
 
 @section('content')
 <div class="row">
-    @foreach(range(1, 10) as $v)
+    @foreach($imgs as $img)
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="{{ asset('QQ图片20161017184259.jpg') }}">
+                <img src="{{ $img['href'] }}">
                 <div class="caption">
-                    <h3>分类xxx</h3>
+                    <h3>{{ $img['category'] }}</h3>
+                    @if(!empty($img['topics']))
                     <p>
-                        <span class="label label-default">标签1</span>
-                        <span class="label label-default">标签2</span>
-                        <span class="label label-default">标签3</span>
+                        @foreach($img['topics'] as $topic)
+                            <span class="label label-default">{{ $topic }}</span>
+                        @endforeach
                     </p>
+                    @endif
                     <div class="btn-group">
                         <a href="#" class="btn btn-primary" role="button">复制</a>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
