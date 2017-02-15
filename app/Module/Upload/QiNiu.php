@@ -34,7 +34,6 @@ class QiNiu implements ImageUpload
             $key = end($key);
         }
         list($ret, $err) = $upload->putFile($token, $key, $filePath);
-        var_dump($ret, $err);
         if (!is_null($err)) throw new \RuntimeException($err);
         return sprintf('%s/%s', env('QINIU_HOST'), $ret['key']);
     }
