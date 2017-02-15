@@ -37,6 +37,7 @@ class ImageUploadListener
         $img->size = $event->file->getSize();
         $img->sourceFileName = $event->file->getFilename();
         $img->targetFileName = $key;
+        $img->userId = $event->userId;
         $img->save();
     }
 }
