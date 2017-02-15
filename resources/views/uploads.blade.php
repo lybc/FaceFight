@@ -1,4 +1,6 @@
-@section('title', '文件上传')
+@section('title', '图片上传')
+@section('category', '图片上传')
+
 @extends('layouts.basePage')
 @section('content')
 <link rel="stylesheet" href="{{ asset('/dropzone-4.3.0/dist/basic.css') }}">

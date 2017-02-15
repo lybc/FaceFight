@@ -1,4 +1,5 @@
 @section('title', '首页')
+
 @extends('layouts.basePage')
 
 @section('content')

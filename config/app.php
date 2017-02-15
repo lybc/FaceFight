@@ -13,7 +13,9 @@ return [
     */
 
     'name' => 'Face Fight',
-
+    'sideMenu' => [
+        ['name' => '图片上传', 'url' => '/upload']
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -120,7 +122,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
