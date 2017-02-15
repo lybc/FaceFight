@@ -13,7 +13,7 @@
 <script>
     Dropzone.options.dz = {
         url: '{{ route('handle-file-upload') }}',
-        maxFilesize: 10,
+        maxFilesize: 3,
         paramName: 'files',
         dictDefaultMessage: '将文件拖拽到此处或点击这里上传',
         acceptedFiles: 'image/*',
