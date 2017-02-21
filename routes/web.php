@@ -12,8 +12,21 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Route::post('/register', 'AuthController@register');
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 Route::get('/upload', function() {
     return view('uploads');
 });
 Route::get('/weixin', 'ImageController@weixinLogin');
+Route::get('/email', function() {
+    \Illuminate\Support\Facades\Mail::to('644375707@qq.com')
+        ->queue(new \App\Mail\ActiveUser());
+});
