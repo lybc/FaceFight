@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Registration Page</title>
+    <title>Face Fight | 用户注册</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -49,7 +49,11 @@
                 {{--<span class="glyphicon glyphicon-user form-control-feedback"></span>--}}
             {{--</div>--}}
             <div class="form-group has-feedback">
-                <input name="email" type="email" class="form-control" placeholder="请输入邮箱">
+                <input name="nickname" type="text" class="form-control" placeholder="昵称">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input name="email" type="email" class="form-control" placeholder="邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">

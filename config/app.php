@@ -180,7 +180,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //'Laravel\Socialite\SocialiteServiceProvider',
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

@@ -1,7 +1,6 @@
 <?php
 namespace App\Module\Upload;
 
-use Mockery\Exception\RuntimeException;
 use Qiniu\Auth;
 use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;

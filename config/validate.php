@@ -3,7 +3,7 @@ return [
     'auth' => [
         'register' => [
             'rule' => [
-                'email' => 'required|email|exists:user,email',
+                'email' => 'required|email|exists:user',
                 'password' => 'required|alpha_dash|min:6',
                 'repeatPassword' => 'same:password'
             ],

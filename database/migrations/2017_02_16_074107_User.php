@@ -16,6 +16,7 @@ class User extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email');
+            $table->string('nickname');
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->tinyInteger('isActive');

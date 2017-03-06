@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Model\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +12,16 @@ class ActiveUser extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $_user;
+
     /**
-     * Create a new message instance.
+     * ActiveUser constructor.
      *
-     * @return void
+     * @param User $user
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->_user = $user;
     }
 
     /**
@@ -28,6 +31,14 @@ class ActiveUser extends Mailable
      */
     public function build()
     {
-        return $this->view('email.activeUser');
+        return $this->view('email.activeUser')
+            ->subject(config('app.name'))
+            ->with('user', $this->_user)
+            ->with('url', $this->createActiveUrl());
+    }
+
+    private function createActiveUrl()
+    {
+        return sprintf('%s?email=%s', url('/activeUser'), encrypt($this->_user->email));
     }
 }

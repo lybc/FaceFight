@@ -8,7 +8,7 @@ use App\Module\Upload\QiNiu;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ImageUploadListener
+class ImageUploadListener implements ShouldQueue
 {
     /**
      * Create the event listener.

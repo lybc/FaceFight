@@ -4,6 +4,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Model\User
+ *
+ * @mixin \Eloquent
+ */
 class User extends Model
 {
     const ACTIVE = 1;

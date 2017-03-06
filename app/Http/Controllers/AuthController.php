@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\ActiveUser;
 use App\Model\User;
+use App\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
@@ -19,19 +21,25 @@ class AuthController extends Controller
 
     public function register()
     {
-//        $this->validate($this->_req, config('validate.auth.register.rule'), config('validate.auth.register.msg'));
-//        $userId = User::insert([
-//            'email' => $this->_req->get('email'),
-//            'password' => password_hash($this->_req->get('password'), PASSWORD_DEFAULT),
-//            'isActive' => User::NOT_ACTIVE,
-//        ]);
-        Mail::to($this->_req->get('email'))->send(new ActiveUser());
+//        dd(config('validate.auth.register.rule'));
+        $this->validate($this->_req, config('validate.auth.register.rule'), config('validate.auth.register.msg'));
+        try {
+            $user = Utils::createModel($this->_req->all(), User::class);
+            DB::beginTransaction();
+            $user->saveOrFail();
+            DB::commit();
+            Mail::to($this->_req->get('email'))->queue(new ActiveUser($user));
+            redirect()->to(url('/login'));
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
 
     }
 
     public function active()
     {
-
+        $email = $this->_req->get('email');
+        User::where('email', $email)->update(['isActive' => User::ACTIVE]);
     }
 
 }
