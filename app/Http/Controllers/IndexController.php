@@ -15,8 +15,14 @@ class IndexController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    function __construct()
+    {
+        $this->middleware('authUser');
+    }
+
     function index()
     {
+        debug(session('user.email'));
         $images = Images::all()->toArray();
         return view('index', ['imgs' => $images]);
     }

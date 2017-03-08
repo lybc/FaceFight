@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('index');
 Route::get('/register', function () {
     return view('auth.register');
 });
@@ -21,7 +21,9 @@ Route::get('/activeUser', 'AuthController@active');
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
+
+Route::post('/login', 'AuthController@login');
 
 Route::get('/upload', function() {
     return view('uploads');

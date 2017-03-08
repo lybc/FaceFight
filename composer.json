@@ -9,12 +9,14 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "barryvdh/laravel-ide-helper": "^2.3",
         "doctrine/dbal": "~2.3",
+        "laracasts/flash": "^2.0",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "~2.0",
         "laravel/tinker": "~1.0",
         "qiniu/php-sdk": "^7.1",
         "socialiteproviders/weixin": "2.1.1",
-        "socialiteproviders/weixin-web": "2.0.1"
+        "socialiteproviders/weixin-web": "2.0.1",
+        "yzalis/identicon": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
