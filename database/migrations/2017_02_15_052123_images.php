@@ -25,6 +25,7 @@ class Images extends Migration
             $table->integer('size')->nullable();
             $table->string('href');
             $table->integer('userId');
+            $table->boolean('isBackUp');
             $table->softDeletes();
             $table->timestamps();
         });
