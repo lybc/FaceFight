@@ -8,8 +8,6 @@ use App\Services\Auth;
 use App\Utils;
 use Identicon\Identicon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -24,9 +22,12 @@ class AuthController extends Controller
     public function login()
     {
         $this->validate($this->_req, config('validate.auth.login.rule'), config('validate.auth.login.msg'));
-        $remember = false;
-        if ($this->_req->has('remember')) $remember = true;
-        if (Auth::login($this->_req->get('email'), $this->_req->get('password'), $remember)) {
+        $user = User::where([
+            'email' => $this->_req->get('email'),
+            'password' => password_verify($this->_req->get('password'), PASSWORD_DEFAULT)
+        ]);
+        if ($user->exists()) {
+            session(['user' => User::first()->toArray()]);
             return redirect()->route('index');
         }
         return redirect()->route('error');
@@ -38,7 +39,7 @@ class AuthController extends Controller
         try {
             $user = Utils::createModel($this->_req->all(), User::class, ['repeatPassword']);
             Auth::register($user);
-            redirect()->route('index');
+            redirect()->route('login');
         } catch (\Exception $e) {
             redirect()->route('error')->with('exception', $e);
         }

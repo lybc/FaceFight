@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', 'IndexController@index')->name('index');
+//Route::get('/', 'IndexController@index')->name('index');
 Route::get('/register', function () {
     return view('auth.register');
 });
 
 Route::post('/register', 'AuthController@register');
 Route::get('/activeUser', 'AuthController@active');
+Route::post('/upload', 'ImageController@receive')->name('handle-file-upload');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -29,3 +30,18 @@ Route::get('/upload', function() {
     return view('uploads');
 });
 Route::get('/weixin', 'ImageController@weixinLogin');
+Route::get('/', function () {
+    return view('main-list');
+});
+
+Route::get('add-post', function () {
+    return view('add-post');
+});
+
+Route::get('detail', function () {
+    return view('item-detail');
+});
+
+Route::get('login', function () {
+    return view('login');
+});

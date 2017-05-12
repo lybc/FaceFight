@@ -17,10 +17,7 @@ class ImageController extends BaseController
     function receive(Request $request)
     {
         $files = $request->file('files');
-        $userId = 1;
-        foreach ($files as $file) {
-            event(new GetImages($file, $userId));
-        }
+        var_dump($request->session());
     }
 
     function edit()
