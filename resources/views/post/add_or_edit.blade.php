@@ -14,7 +14,7 @@
             </div>
             <div class="field">
                 <label>内容</label>
-                @include('pageComponents.editor', ['postName' => 'content'])
+                @include('pageComponents.editor')
             </div>
             <button class="ui secondary button" type="submit">发帖</button>
             <button class="ui button" type="submit">取消</button>
@@ -23,6 +23,9 @@
     <script>
         $('form#post').submit(function () {
             var formData = $(this).serialize();
+            $('.ui.modal')
+                .modal('show')
+            ;
             return false;
         });
     </script>
