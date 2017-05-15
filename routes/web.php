@@ -35,13 +35,13 @@ Route::get('/', function () {
 });
 
 Route::get('add-post', function () {
-    return view('add-post');
+    return view('post.add_or_edit');
 });
 
 Route::get('detail', function () {
     return view('item-detail');
 });
 
-Route::get('login', function () {
-    return view('login');
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

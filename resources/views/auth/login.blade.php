@@ -1,96 +1,115 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Face Fight | 登陆</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="{{ asset('adminlte/bootstrap/css/bootstrap.min.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/AdminLTE.min.css') }}">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/iCheck/square/blue.css') }}">
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ asset('semantic-ui/semantic.min.css') }}">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('semantic-ui/semantic.min.js') }}"></script>
+    <style type="text/css">
+        body {
+            background-color: #DADADA;
+        }
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        body > .grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('.ui.form').form({
+                fields: {
+                    email: {
+                        identifier: 'email',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter your e-mail'
+                        },
+                            {
+                                type: 'email',
+                                prompt: 'Please enter a valid e-mail'
+                            }
+                        ]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                            {
+                                type: 'length[6]',
+                                prompt: 'Your password must be at least 6 characters'
+                            }]
+                    }
+                }
+            });
+        });
+
+        $('.ui.checkbox').checkbox();
+    </script>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        {{ config('app.name') }}
-    </div>
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <form action="{{ url('/login') }}" method="post">
+<body>
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            {{--<img src="assets/images/logo.png" class="image">--}}
+            <div class="content">
+                Welcome to Face Fight
+            </div>
+        </h2>
+        <form class="ui large form" action="{{ route('login') }}" method="post">
             {{ csrf_field() }}
-            <div class="form-group has-feedback">
-                <input type="email" name="email" class="form-control" placeholder="请输入邮箱">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="请输入密码">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input name="remember" type="checkbox"> 记住我
-                        </label>
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="邮箱">
                     </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">登陆</button>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="密码">
+                    </div>
                 </div>
-                <!-- /.col -->
+                <div class="ui fluid large teal submit button">登录</div>
             </div>
+            <div class="ui error message">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                @endif
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                @endif
+            </div>
+
         </form>
 
-        <!-- /.social-auth-links -->
-
-        <a href="#">忘记密码</a><br>
-        <a href="{{ url('/register') }}" class="text-center">注册新用户</a>
-
+        <div class="ui message">
+            还没有账户 ? <a href="{{ route('register') }}">注册</a>
+        </div>
     </div>
-    <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->
 
-<!-- jQuery 2.2.3 -->
-<script src="{{ asset('adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{{  asset('adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- iCheck -->
-<script src="{{  asset('adminlte/plugins/iCheck/icheck.min.js') }}"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
-</script>
 </body>
+
 </html>

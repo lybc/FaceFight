@@ -68,7 +68,7 @@
                 Welcome to Face Fight
             </div>
         </h2>
-        <form class="ui large form">
+        <form class="ui large form" action="{{ route('login') }}">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
@@ -82,6 +82,12 @@
                         <input type="password" name="password" placeholder="密码">
                     </div>
                 </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" tabindex="0" class="hidden">
+                        <label>记住我</label>
+                    </div>
+                </div>
                 <div class="ui fluid large teal submit button">登录</div>
             </div>
 
@@ -90,7 +96,7 @@
         </form>
 
         <div class="ui message">
-            New to us? <a href="#">Sign Up</a>
+            还没有账户 ? <a href="#">Sign Up</a>
         </div>
     </div>
 </div>
